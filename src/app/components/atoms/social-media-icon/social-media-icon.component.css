@@ -1,0 +1,9 @@
+a {
+    text-decoration: none;
+    margin: 0 5px;
+  }
+  mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }

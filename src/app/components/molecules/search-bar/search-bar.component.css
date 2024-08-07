@@ -1,0 +1,50 @@
+.search-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 8px;
+  }
+  
+/* Rectangle 5 */
+
+
+  .input-group {
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 39px;
+    overflow: hidden;
+    background-color: #FFFFFF;
+    width: 380px;
+    height: 42px;
+}
+.input-group input {
+    flex: 1;
+    padding: 24px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.input-group button {
+    padding: 0;
+    border: none;
+    background-color: #744BFC;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 45px;
+}
+
+.filter-button{
+  background-color: #FFFFFF;
+  width: 49px;
+  border: none;
+  height: 42px;
+  background: #FFFFFF;
+  border-radius: 26px;
+  
+}

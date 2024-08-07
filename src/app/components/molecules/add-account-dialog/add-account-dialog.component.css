@@ -1,0 +1,61 @@
+.dialog {
+  width: 488px ;
+  box-sizing: border-box;
+}
+
+mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+}
+
+.customInput{
+  
+width: 424px;
+height: 40px;
+border: 1px solid #D9D9D9;
+border-radius: 38px;
+margin-bottom: 15px;
+}
+
+
+.close-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  padding: 24px;
+}
+.cancel-button {
+  background-color: #EFF2FF;
+  color: #744BFC;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 12px 16px;
+  font-family: Arial, sans-serif;
+  border-radius: 58px;
+}
+.save-button {
+  background-color: #744BFC;
+  color: #EFF2FF;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 12px 16px;
+  font-family: Arial, sans-serif;
+  border-radius: 58px;
+}
+

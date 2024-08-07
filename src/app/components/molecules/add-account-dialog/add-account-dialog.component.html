@@ -1,0 +1,19 @@
+<div class="dialog">
+  <div mat-dialog-title>
+    <button class="close-button" (click)="onCancel()">X</button>
+  </div>
+  <div mat-dialog-content>
+    <form [formGroup]="addAccountForm">
+      <mat-label>Sosyal Medya Linki</mat-label>
+        <input class="customInput" formControlName="link" appLinkValidator="https?://.+">
+      <mat-label>Sosyal Medya Adı</mat-label>
+        <input class="customInput"  formControlName="name">
+      <mat-label>Açıklama</mat-label>
+        <input class="customInput" formControlName="description">
+    </form>
+  </div>
+  <div class="footer">
+    <button class="cancel-button" (click)="onCancel()">Vazgeç</button>
+    <button class="save-button" (click)="onSave()">Kaydet</button>
+  </div>
+</div>

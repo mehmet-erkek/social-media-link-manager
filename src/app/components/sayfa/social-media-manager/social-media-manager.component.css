@@ -1,0 +1,50 @@
+main {
+    background-color: #EFF2FF;
+    width: 1581px;
+    height: 841px;
+    margin-top: 140px;
+    box-sizing: border-box;
+}
+
+.search-and-add {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 35px;
+    background-color: #EFF2FF;
+}
+
+button {
+    width: 175px;
+    height: 42px;
+    background: #744BFC;
+    color: white;
+    border-radius: 58px;
+
+}
+
+.addButton {
+    display: flex;
+    align-items: center;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+      background-color: #744BFC;
+      color: white;
+      border-radius: 58px;
+    }
+    .addButton img {
+      width: 16px;
+      height: 16px;
+      margin-right: 8px;
+  }
+
+  ::ng-deep .mat-mdc-paginator-container {
+    color: #744BFC;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between !important;
+    width: 100%;
+  }

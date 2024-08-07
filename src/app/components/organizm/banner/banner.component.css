@@ -1,0 +1,15 @@
+mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+    background: white;
+    padding: 60px 104px;
+  }
+  
+  nav {
+    display: flex;
+  }
+  
+.social-icons {
+  display: flex;
+  align-items: center;
+}

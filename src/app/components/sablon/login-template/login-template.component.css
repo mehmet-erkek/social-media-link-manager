@@ -1,0 +1,30 @@
+.login-template {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+  }
+  
+  mat-card {
+    padding: 20px;
+    width: 100%;
+    max-width: 350px;
+    border-style: groove;
+  }
+  
+  mat-card-title {
+    
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  mat-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  

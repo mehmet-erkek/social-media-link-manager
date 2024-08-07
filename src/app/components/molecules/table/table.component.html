@@ -1,0 +1,10 @@
+<table>
+  <thead>
+    <tr>
+      <app-table-header *ngFor="let header of headers" [header]="header"></app-table-header>
+    </tr>
+  </thead>
+  <tbody>
+    <app-table-row *ngFor="let row of rows" [cells]="row"></app-table-row>
+  </tbody>
+</table>

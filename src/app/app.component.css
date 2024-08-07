@@ -1,0 +1,9 @@
+
+.content-area {
+    height: 950px;
+    margin-left: 29px;
+    margin-right: 29px;
+    background-color: #EFF2FF; /* İçerik alanının arka plan rengi */
+    padding-left: 72px;
+    padding-right: 72px;
+  }

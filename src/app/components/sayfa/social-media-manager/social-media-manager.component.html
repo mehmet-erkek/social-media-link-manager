@@ -1,0 +1,18 @@
+<div class="main">
+  <div class="search-and-add">
+    <app-search-bar (search)="applyFilter($event)"></app-search-bar>
+    <button class="addButton" (click)="openAddAccountDialog()">
+      <img src="assets/add.png" alt="Submit">
+      Yeni Hesap Ekle
+    </button>
+  </div>
+  <app-social-media-table [dataSource]="socialMediaAccounts" 
+  (edit)="openEditAccountDialog($event)"
+  (delete)="deleteAccount($event)">></app-social-media-table>
+  <mat-paginator
+  [pageSizeOptions]="[3, 5, 10]"
+  [pageSize]="5"
+  showFirstLastButtons>
+  
+</mat-paginator>
+</div>

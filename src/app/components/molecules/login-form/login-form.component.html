@@ -1,0 +1,6 @@
+<form (ngSubmit)="onSubmit()" >
+  <app-input [(ngModel)]="username" name="username" type="text" placeholder="Kullanıcı Adı" required></app-input>
+  <app-input [(ngModel)]="password" name="password" type="password" placeholder="Şifre" required></app-input>
+  <app-button  label="Giriş Yap"></app-button>
+
+</form>

@@ -1,0 +1,14 @@
+a {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  line-height: 21px;
+  color: #000000;
+  text-decoration: none;
+  margin-right: 90px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
