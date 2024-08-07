@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
@@ -23,63 +23,77 @@ interface SocialMediaAccount {
   standalone: true,
   imports: [CommonModule, SocialMediaTableComponent, SearchBarComponent, MatDialogModule, AddAccountDialogComponent, MatPaginator, MatPaginatorModule],
   templateUrl: './social-media-manager.component.html',
-  styleUrl: './social-media-manager.component.css'
+  styleUrls: ['./social-media-manager.component.css']
 })
-export class SocialMediaManagerComponent {
 
+export class SocialMediaManagerComponent implements AfterViewInit {
+  addOrEdit: boolean = false
   link: any;
   socialMediaAccounts = new MatTableDataSource([
-    { link: 'instagram.com/mobilerast/', name: 'instagram', description: 'We\'ll help you to finish your development project successfully.' },
-    { link: 'tr.linkedin.com/company/rastmobile', name: 'linkedin', description: 'Hire vetted developers from Rast Mobile to scale up your tech projects.' },
-    { link: 'behance.net/rastmobile', name: 'behance', description: 'Software Development Agency Rast Mobile Information Technology Ltd.' },
-    { link: 'twitter.com/rastmobile', name: 'twitter', description: 'Software Development Agency Rast Mobile Information Technology Ltd.' }
+    { id: '', link: 'instagram.com/mobilerast/', name: 'instagram', description: 'We\'ll help you to finish your development project successfully.' },
+    { id: '', link: 'tr.linkedin.com/company/rastmobile', name: 'linkedin', description: 'Hire vetted developers from Rast Mobile to scale up your tech projects.' },
+    { id: '', link: 'behance.net/rastmobile', name: 'behance', description: 'Software Development Agency Rast Mobile Information Technology Ltd.' },
+    { id: '', link: 'twitter.com/rastmobile', name: 'twitter', description: 'Software Development Agency Rast Mobile Information Technology Ltd.' }
   ]);
 
+  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
-
-  constructor(private dialog: MatDialog, private route: ActivatedRoute, private localStorageService: LocalStorageService, private apiService: ApiService) { }
+  constructor(
+    private dialog: MatDialog,
+    private route: ActivatedRoute,
+    private localStorageService: LocalStorageService,
+    private apiService: ApiService,
+    private cdr: ChangeDetectorRef
+  ) { }
 
   ngOnInit(): void {
 
-    this.fetchLinks();
     this.loadAccountsFromLocalStorage();
+    this.fetchLinks();
 
     this.route.data.subscribe(data => {
       this.link = data['link'];
     });
   }
 
-  //Local storage'a kaydedilmiş dataları tabloya çekme işlemi 
+  ngAfterViewInit(): void {
+    if (this.paginator) {
+      this.socialMediaAccounts.paginator = this.paginator;
+    }
+  }
+
+  // Local storage'a kaydedilmiş dataları tabloya çekme işlemi 
   loadAccountsFromLocalStorage() {
     const accounts = this.localStorageService.getItem('socialMediaAccounts');
     if (accounts) {
       this.socialMediaAccounts.data = accounts;
-      this.fetchLinks()
       if (this.paginator) {
         this.socialMediaAccounts.paginator = this.paginator;
       }
     }
   }
 
-  //apiden gelen veritabanına kaydedilmiş dataları çekme işlemi 
+  // Apiden gelen veritabanına kaydedilmiş dataları çekme işlemi 
   fetchLinks() {
-    this.apiService.getLinks().subscribe((data: any) => {
-      this.socialMediaAccounts = new MatTableDataSource(data);
+    this.apiService.getLinks().subscribe((data: SocialMediaAccount[]) => {
+      this.socialMediaAccounts.data = data;
+      if (this.paginator) {
+        this.socialMediaAccounts.paginator = this.paginator;
+      }
+      this.saveAccountsToLocalStorage();
     });
   }
 
-  //Local storage'a kaydetme işlemi
+  // Local storage'a kaydetme işlemi
   saveAccountsToLocalStorage() {
     this.localStorageService.setItem('socialMediaAccounts', this.socialMediaAccounts.data);
   }
 
-  //tablonun içerisinde bulunan tüm metinlerin filtrelenmesini sağlıyor
+  // Tablonun içerisinde bulunan tüm metinlerin filtrelenmesini sağlıyor
   applyFilter(filterValue: string): void {
     this.socialMediaAccounts.filter = filterValue.trim().toLowerCase();
   }
-
-  //yeni hesap ekle butonundan sonra açılan popup
+  // Yeni hesap ekle butonundan sonra açılan popup
   openAddAccountDialog(): void {
     const dialogRef = this.dialog.open(AddAccountDialogComponent);
 
@@ -90,49 +104,57 @@ export class SocialMediaManagerComponent {
     });
   }
 
-  //yeni hesap ekleme işlemi
-  addAccount(newAccount: { link: string, name: string, description: string }): void {
-    this.socialMediaAccounts.data.push(newAccount);
-    this.socialMediaAccounts.data = [...this.socialMediaAccounts.data];
+  // Yeni hesap ekleme işlemi
+  addAccount(newAccount: { id: string, link: string, name: string, description: string }): void {
+    this.socialMediaAccounts.data = [...this.socialMediaAccounts.data, newAccount];
     this.saveAccountsToLocalStorage();
+    if (this.paginator) {
+      this.socialMediaAccounts.paginator = this.paginator;
+    }
+    this.fetchLinks()
+    this.cdr.detectChanges();
   }
 
-  //edit ekranı inputların içi dolduruluyor. Veri tabanına kaydedilise local storage a da kaydediliyor.
+  // Edit ekranı inputların içi dolduruluyor. Veri tabanına kaydedilirse local storage'a da kaydediliyor.
   openEditAccountDialog(account: SocialMediaAccount): void {
+    this.addOrEdit = true
+    
     const dialogRef = this.dialog.open(AddAccountDialogComponent, {
       data: account
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        const index = this.socialMediaAccounts.data.indexOf(account);
+        // Mevcut veriyi güncelle
+        const index = this.socialMediaAccounts.data.findIndex(acc => acc.id === account.id);
         if (index >= 0) {
+          this.socialMediaAccounts.data[index] = result;
+          console.log(this.socialMediaAccounts.data[index])
+          this.socialMediaAccounts.data = [...this.socialMediaAccounts.data]; // MatTableDataSource için yenile
 
-          this.apiService.updateLink(account.id, result).pipe(
-            tap(() => {
-              // Güncelleme işlemi başarılı olduğunda yapılacak işlemler
-              this.socialMediaAccounts.data[index] = result;
-              this.socialMediaAccounts.data = [...this.socialMediaAccounts.data];
-              this.saveAccountsToLocalStorage();
-              console.log('Bağlantı başarıyla güncellendi.');
-            }),
-            catchError((error) => {
-              // Hata durumunda yapılacak işlemler
-              console.error('Silme işlemi sırasında bir hata oluştu:', error);
-              return throwError(() => error); // Hata ile ilgili uygun işlemi yapın
-            })
-          ).subscribe();
+          // Yerel depolamayı güncelle
+          this.saveAccountsToLocalStorage();
+          console.log('Tablo başarıyla güncellendi.');
+
+          // Paginator'ı tekrar ayarla
+          if (this.paginator) {
+            this.socialMediaAccounts.paginator = this.paginator;
+          }
+          this.fetchLinks()
+          this.cdr.detectChanges();
+
 
         }
       }
-    });
+    })
+
   }
 
-  //hesap silme işlemi
+
+  // Hesap silme işlemi
   deleteAccount(account: SocialMediaAccount): void {
     const index = this.socialMediaAccounts.data.indexOf(account);
     if (index >= 0) {
-
       this.apiService.deleteLink(account.id).pipe(
         tap(() => {
           // Silme işlemi başarılı olduğunda yapılacak işlemler
@@ -140,6 +162,11 @@ export class SocialMediaManagerComponent {
           this.socialMediaAccounts.data = [...this.socialMediaAccounts.data];
           this.saveAccountsToLocalStorage();
           console.log('Bağlantı başarıyla silindi.');
+          if (this.paginator) {
+            this.socialMediaAccounts.paginator = this.paginator;
+          }
+          this.fetchLinks()
+          this.cdr.detectChanges();
         }),
         catchError((error) => {
           // Hata durumunda yapılacak işlemler
@@ -147,7 +174,6 @@ export class SocialMediaManagerComponent {
           return throwError(() => error); // Hata ile ilgili uygun işlemi yapın
         })
       ).subscribe();
-
     }
   }
 }

@@ -7,7 +7,6 @@ export class AuthService {
   private authenticated = false;
 
   login(username: string, password: string): boolean {
-    console.log(username,password)
     if (username === 'rastmobile' && password === 'rastmobile') {
       this.authenticated = true;
       return true;

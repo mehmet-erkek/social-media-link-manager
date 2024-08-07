@@ -1,8 +1,12 @@
 
 # Proje: Sosyal Medya Yönetim Uygulaması
 
-Bu proje, sosyal medya linklerini yönetmek için geliştirilmiş bir Angular uygulamasıdır. Uygulama, sosyal medya linklerini listeleme, ekleme, düzenleme ve silme işlemlerini gerçekleştirebilmektedir. Ayrıca, linklerin durumunu local storage'da saklayabilir ve uygulama yeniden yüklendiğinde bu verileri geri yükleyebilir.
+Bu proje, Rast Mobile Bilgi Teknolojileri Ltd. Şti Angular Task için geliştirilmiş bir Angular uygulamasıdır. Uygulamayı geliştirirken istenilen şartları adım adım tamamlamaya çaışarak ilerledim. Proje atomic yapıda ilerletmeye çalıştım. Bazı noktalarda atomic yapıdan çıkmış bulundum. Genel tasarımlar bittikten sonra guard resolver işlemlerine başlayarak diğer istekleri ve kriterleri yerine getirmeye çalıştım. Normalde responsive tasarım yapmam gerektiğini biliyorum fakat daha önce atomic yapıda çalışmamıştım responsive hale getirmek biraz kafa karışıklığı yarattı. Sürecin uzamaması ve hızlı bir şekilde size teslim etmek istedim. Sadece banner için minik bir responsivelik katmak istedim. Devextreme Primeng Bootstrap Tailwind gibi toollar kullanmak istemedim çünkü wordde esneklik belirtmemişsiniz.
+Bu yüzden paket olarak anguların kendi material ini kullanmayı tercih ettim
 
+Tabloyu görüntülemek için 
+kullanıcı adı ve şifre : rastmobile  
+girerek giriş yapabilirsiniz.
 ---
 
 ## Kullanılan Teknolojiler

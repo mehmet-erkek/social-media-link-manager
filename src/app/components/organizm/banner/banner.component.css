@@ -1,15 +1,73 @@
 mat-toolbar {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background: white;
     padding: 60px 104px;
   }
   
   nav {
     display: flex;
+    align-items: center;
   }
   
 .social-icons {
   display: flex;
   align-items: center;
+}
+
+
+
+/* Responsive Tasarım */
+@media (max-width: 1200px) {
+  mat-toolbar {
+    padding: 20px 30px; /* Daha küçük ekranlar için padding ayarı */
+  }
+}
+
+@media (max-width: 992px) {
+  mat-toolbar {
+    flex-direction: column;
+    align-items: flex-start; /* Ekran daraldığında öğeleri dikey hizalar */
+    padding: 20px; /* Daha küçük ekranlar için padding ayarı */
+  }
+
+  .social-icons {
+    margin-top: 10px; /* İkonları alt tarafa kaydır */
+    gap: 12px; /* İkonlar arasındaki boşluk */
+  }
+
+  nav {
+    margin-top: 10px; /* Menü ve diğer öğeler arasında boşluk */
+  }
+}
+
+@media (max-width: 768px) {
+  mat-toolbar {
+    padding: 15px; /* Küçük ekranlar için daha fazla padding azaltma */
+  }
+
+  .social-icons {
+    gap: 8px; /* İkonlar arasındaki boşluk azaltma */
+  }
+
+  /* Logo ve menüyü küçük ekranlarda düzenleme */
+  app-logo, app-menu {
+    flex-basis: 100%; /* Öğeleri satıra sığdırmak için genişlik ayarı */
+    text-align: center; /* Öğeleri ortala */
+  }
+}
+
+@media (max-width: 576px) {
+  mat-toolbar {
+    padding: 10px; /* En küçük ekranlar için padding ayarı */
+  }
+
+  .social-icons {
+    display: none; /* Sosyal medya ikonlarını küçük ekranlarda gizle */
+  }
+
+  app-menu {
+    display: none; /* Menü öğelerini küçük ekranlarda gizle */
+  }
 }

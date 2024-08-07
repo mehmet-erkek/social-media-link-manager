@@ -2,6 +2,9 @@
 Bu proje, sosyal medya linklerini yönetmek için geliştirilmiş bir Angular uygulamasıdır. Uygulama, sosyal medya linklerini listeleme, ekleme, düzenleme ve silme işlemlerini gerçekleştirebilmektedir. Ayrıca, linklerin durumunu local storage'da saklayabilir ve uygulama yeniden yüklendiğinde bu verileri geri yükleyebilir.
 ---
 
+Tabloyu görüntülemek için 
+kullanıcı adı ve şifre : rastmobile  
+girerek giriş yapabilirsiniz.
 
 ### İçindekiler
 1. [Kullanılan Teknolojiler](#kullanılan-teknolojiler)
