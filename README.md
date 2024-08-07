@@ -26,6 +26,11 @@ Bu proje, sosyal medya linklerini yönetmek için geliştirilmiş bir Angular uy
 - Angular CLI
 - MongoDB
 
+1. Proje klasörü açın
+2. Terminal'i açın
+3. git clone https://github.com/mehmet-erkek/social-media-link-manager.git
+   
+
 ### Frontend
 
 1. Proje dizinine gidin:
