@@ -1,5 +1,5 @@
 # Proje: Sosyal Medya Yönetim Uygulaması
-Bu proje, sosyal medya linklerini yönetmek için geliştirilmiş bir Angular uygulamasıdır. Uygulama, sosyal medya linklerini listeleme, ekleme, düzenleme ve silme işlemlerini gerçekleştirebilmektedir. Ayrıca, linklerin durumunu local storage'da saklayabilir ve uygulama yeniden yüklendiğinde bu verileri geri yükleyebilir.
+### Bu proje, Rast Mobile Bilgi Teknolojileri Ltd. Şti Angular Task dökümanında ve figma tasarımında istenen sosyal medya linklerini yönetmek için geliştirilmiş bir Angular uygulamasıdır. Uygulama, sosyal medya linklerini listeleme, ekleme, düzenleme ve silme işlemlerini gerçekleştirebilmektedir. Ayrıca, linklerin durumunu local storage'da saklayabilir ve uygulama yeniden yüklendiğinde bu verileri geri yükleyebilir. Dosyalarda bulunan dokuman da kısa bir önyazı bulunmaktadır.
 ---
 
 Tabloyu görüntülemek için 
